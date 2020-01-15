@@ -1,0 +1,12 @@
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\bin\Debug\MathQuiz.exe.config
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\bin\Debug\MathQuiz.exe
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\bin\Debug\MathQuiz.pdb
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\bin\Debug\af-ZA\MathQuiz.resources.dll
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.csprojAssemblyReference.cache
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.Form1.resources
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.Properties.Resources.resources
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.Form1.af-ZA.resources
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.csproj.GenerateResource.cache
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\af-ZA\MathQuiz.resources.dll
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.exe
+H:\Programming\cit365\W02 Assignment\MathQuiz\MathQuiz\obj\Debug\MathQuiz.pdb
