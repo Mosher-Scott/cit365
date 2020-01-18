@@ -131,6 +131,9 @@
   <data name="timeLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="timeLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
   <data name="&gt;&gt;timeLabel.Name" xml:space="preserve">
     <value>timeLabel</value>
   </data>

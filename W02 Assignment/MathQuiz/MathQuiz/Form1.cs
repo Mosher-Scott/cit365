@@ -136,7 +136,7 @@ namespace MathQuiz
             {
                 timeLabel.BackColor = Color.Red;
                 timeLeft--;
-                timeLabel.Text = timeLeft + " seconds";
+                timeLabel.Text = timeLeft + " Seconds";
             }
 
             else if (timeLeft > 0)
@@ -145,7 +145,7 @@ namespace MathQuiz
                 // Display the new time left
                 // by updating the Time Left label.
                 timeLeft--;
-                timeLabel.Text = timeLeft + " seconds";
+                timeLabel.Text = timeLeft + " Seconds";
             }
             else
             {
