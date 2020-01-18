@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.label1 = new System.Windows.Forms.Label();
+            this.timeLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.plusLeftLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,18 +53,21 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dividedLeftLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.difference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.product)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quotient)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // timeLabel
             // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.timeLabel, "timeLabel");
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -95,11 +99,13 @@
             // 
             resources.ApplyResources(this.sum, "sum");
             this.sum.Name = "sum";
+            this.sum.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // difference
             // 
             resources.ApplyResources(this.difference, "difference");
             this.difference.Name = "difference";
+            this.difference.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label6
             // 
@@ -125,11 +131,13 @@
             // 
             resources.ApplyResources(this.product, "product");
             this.product.Name = "product";
+            this.product.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // timesRightLabel
             // 
@@ -150,6 +158,7 @@
             // 
             resources.ApplyResources(this.quotient, "quotient");
             this.quotient.Name = "quotient";
+            this.quotient.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // label11
             // 
@@ -179,10 +188,31 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // dateLabel
+            // 
+            this.dateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.dateLabel, "dateLabel");
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click_2);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Cornsilk;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.quotient);
             this.Controls.Add(this.label11);
@@ -205,7 +235,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.plusLeftLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.timeLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.ScottMosherMathQuiz_Load);
@@ -220,7 +250,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label plusLeftLabel;
         private System.Windows.Forms.Label label3;
@@ -243,6 +273,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label dividedLeftLabel;
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
 

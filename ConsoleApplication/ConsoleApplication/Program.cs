@@ -6,32 +6,43 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            var name = "Scott Mosher";
-            var location = "Springville, UT";
+            /*         var name = "Scott Mosher";
+                     var location = "Springville, UT";
 
-            // Get the current date & date of Christmas
-            DateTime currentDate = DateTime.Now;
-            DateTime christmas = new DateTime(2020, 12, 25);
-            TimeSpan daysTilChristmas = christmas.Subtract(currentDate);
+                     Console.WriteLine("this" + "this");
 
-            Console.WriteLine($"My name is {name}, and I currently live in {location}.");
-            Console.WriteLine("Current Date: " + currentDate.ToString("d"));
-            Console.WriteLine($"Days til Christmas 2020: {daysTilChristmas.Days}");
 
-            // Glazer Calc stuff
-            Console.WriteLine("\n-----  Glazer Calc -----");
-            Console.Write("\nWidth: ");
-            double width = Convert.ToDouble(Console.ReadLine());
+                     // Get the current date & date of Christmas
+                     DateTime currentDate = DateTime.Now;
+                     DateTime christmas = new DateTime(2020, 12, 25);
+                     TimeSpan daysTilChristmas = christmas.Subtract(currentDate);
 
-            Console.Write("Height: ");
-            double height = Convert.ToDouble(Console.ReadLine());
+                     Console.WriteLine($"My name is {name}, and I currently live in {location}.");
+                     Console.WriteLine("Current Date: " + currentDate.ToString("d"));
+                     Console.WriteLine($"Days til Christmas 2020: {daysTilChristmas.Days}");
 
-            GlazerCalc doubleGlaze = new GlazerCalc(width, height);
+                     // Glazer Calc stuff
+                     Console.WriteLine("\n-----  Glazer Calc -----");
+                     Console.Write("\nWidth: ");
+                     double width = Convert.ToDouble(Console.ReadLine());
 
-            doubleGlaze.getArea();
+                     Console.Write("Height: ");
+                     double height = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Press any key to close.");
-            Console.ReadKey();
+                     GlazerCalc doubleGlaze = new GlazerCalc(width, height);
+
+                     doubleGlaze.getArea();
+
+                     Console.WriteLine("Press any key to close.");
+                     Console.ReadKey();*/
+
+            int x = 1;
+            while (x++ < 5)
+            {
+                if (x % 2 == 0)
+                    x += 2;
+                Console.WriteLine("test");
+            }
         }
     }
 
