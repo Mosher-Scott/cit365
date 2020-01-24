@@ -42,8 +42,6 @@ namespace MathQuiz
     public void StartTheQuiz()
         {
 
-
-
             // Fill in the adition problem by generationg 2 numbers to add.  Store them in the variables
             addend1 = randomizer.Next(51);
             addend2 = randomizer.Next(51);
@@ -185,6 +183,11 @@ namespace MathQuiz
         }
 
         private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sum_ValueChanged(object sender, EventArgs e)
         {
 
         }

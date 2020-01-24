@@ -99,6 +99,7 @@
             // 
             resources.ApplyResources(this.sum, "sum");
             this.sum.Name = "sum";
+            this.sum.ValueChanged += new System.EventHandler(this.sum_ValueChanged);
             this.sum.Enter += new System.EventHandler(this.answer_Enter);
             // 
             // difference
