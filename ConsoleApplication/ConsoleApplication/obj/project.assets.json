@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Programming\\cit365\\ConsoleApplication\\ConsoleApplication\\ConsoleApplication.csproj",
+      "projectUniqueName": "H:\\Programming\\CIT 365\\ConsoleApplication\\ConsoleApplication\\ConsoleApplication.csproj",
       "projectName": "ConsoleApplication",
-      "projectPath": "H:\\Programming\\cit365\\ConsoleApplication\\ConsoleApplication\\ConsoleApplication.csproj",
+      "projectPath": "H:\\Programming\\CIT 365\\ConsoleApplication\\ConsoleApplication\\ConsoleApplication.csproj",
       "packagesPath": "C:\\Users\\SMP Desktop\\.nuget\\packages\\",
-      "outputPath": "H:\\Programming\\cit365\\ConsoleApplication\\ConsoleApplication\\obj\\",
+      "outputPath": "H:\\Programming\\CIT 365\\ConsoleApplication\\ConsoleApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
