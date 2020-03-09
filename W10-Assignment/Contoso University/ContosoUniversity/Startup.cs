@@ -9,6 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using ContosoUniversity.Models;
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore;
+
 namespace ContosoUniversity
 {
     public class Startup
@@ -23,7 +29,14 @@ namespace ContosoUniversity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Register the SchoolContext as a service so dependency injection will work.  You'll need to modify appsettings.json to create the DefaultConnection
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
