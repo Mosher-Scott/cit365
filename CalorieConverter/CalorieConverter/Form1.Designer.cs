@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.totalCaloriesLabel = new System.Windows.Forms.Label();
             this.carbsLabel = new System.Windows.Forms.Label();
             this.faLabel = new System.Windows.Forms.Label();
@@ -249,6 +250,7 @@
             this.Controls.Add(this.faLabel);
             this.Controls.Add(this.carbsLabel);
             this.Controls.Add(this.totalCaloriesLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Form1";
             this.Text = "Calorie Converter";

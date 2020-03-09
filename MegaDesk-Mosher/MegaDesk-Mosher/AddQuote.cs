@@ -18,11 +18,6 @@ namespace MegaDesk_Mosher
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddQuote_Load(object sender, EventArgs e)
         {
 
@@ -42,6 +37,14 @@ namespace MegaDesk_Mosher
             Close();
         }
 
+        // Hiding all the methods that are empty
+        #region
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -51,18 +54,10 @@ namespace MegaDesk_Mosher
         {
 
         }
-
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void textBox1_PopupMessage(object sender, EventArgs e)
-        {
-            ToolTip deskWidthMessage = new ToolTip();
-            deskWidthMessage.ShowAlways = true;
-            deskWidthMessage.IsBalloon = true;
-            deskWidthMessage.SetToolTip(DeskWidthInputBox, "Min 12\",  Max 96\"");
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -74,15 +69,6 @@ namespace MegaDesk_Mosher
         {
 
         }
-
-        private void DesktopHeightInputBox_PopupMessage(object sender, EventArgs e)
-        {
-            ToolTip deskWidthMessage = new ToolTip();
-            deskWidthMessage.ShowAlways = true;
-            deskWidthMessage.IsBalloon = true;
-            deskWidthMessage.SetToolTip(DeskDepthtInputBox, "Min 12\",  Max 48\"");
-        }
-
         private void label2_Click_1(object sender, EventArgs e)
         {
 
@@ -91,6 +77,24 @@ namespace MegaDesk_Mosher
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        #endregion
+
+        private void textBox1_PopupMessage(object sender, EventArgs e)
+        {
+            ToolTip deskWidthMessage = new ToolTip();
+            deskWidthMessage.ShowAlways = true;
+            deskWidthMessage.IsBalloon = true;
+            deskWidthMessage.SetToolTip(DeskWidthInputBox, "Min 24\",  Max 96\"");
+        }
+
+        private void DesktopHeightInputBox_PopupMessage(object sender, EventArgs e)
+        {
+            ToolTip deskWidthMessage = new ToolTip();
+            deskWidthMessage.ShowAlways = true;
+            deskWidthMessage.IsBalloon = true;
+            deskWidthMessage.SetToolTip(DeskDepthtInputBox, "Min 12\",  Max 48\"");
         }
 
         private void NumberOfDrawersInputBox_MouseHover(object sender, EventArgs e)
@@ -119,19 +123,17 @@ namespace MegaDesk_Mosher
 
         private void GenerateQuote(object sender, EventArgs e)
         {
-            // Validate everything again, just so someone can't submit empty data
-
-            double width = 15;
-            double depth = 6;
-            int drawers = 5;
-            string material = "Goat";
-            int rushOrderOption = 9;
+            //  TODO: Validate all fields before sending the data so someone can't submit empty/invalid data
+            string clientName = CustomerNameInputBox.Text;
+            double width = double.Parse(DeskWidthInputBox.Text);
+            double depth = double.Parse(DeskDepthtInputBox.Text);
+            int drawers = int.Parse(NumberOfDrawersInputBox.Text);
+            string material = SurfaceMaterialInputBox.Text;
+            int rushOrderOption = int.Parse(RushOrderInputBox.Text);
 
             Desk myDesk = new Desk(width, depth, drawers, material, rushOrderOption);
 
-            DisplayQuote.Desk = myDesk;
-
-            DisplayQuote viewDisplayQuoteForm = new DisplayQuote();
+            DisplayQuoteInfo viewDisplayQuoteForm = new DisplayQuoteInfo(clientName, width, depth, drawers, material, rushOrderOption);
 
             viewDisplayQuoteForm.Tag = this;
             viewDisplayQuoteForm.Show(this);
@@ -209,7 +211,7 @@ namespace MegaDesk_Mosher
                     NumberOfDrawersInputBox.ForeColor = Color.Black;
                     NumberOfDrawersInputBox.BackColor = Color.Red;
                     NumberOfDrawersInputBox.Focus();
-                    MessageBox.Show($"Min Width: {Desk.MINDRAWERS}\"\nMax Width: {Desk.MAXDRAWERS}\"");
+                    MessageBox.Show($"Must enter a number between {Desk.MINDRAWERS} and {Desk.MAXDRAWERS}");
                 }
                 else
                 {
@@ -231,15 +233,16 @@ namespace MegaDesk_Mosher
             {
                 string surfaceMaterial = SurfaceMaterialInputBox.Text;
 
-                Boolean isValideSurfaceMaterial = false;
+                Boolean isInputValid = isValidSurfaceMaterial(surfaceMaterial);
+
 
                 // While the validation fails, change the text color
-                while (!isValideSurfaceMaterial)
+                if (!isInputValid)
                 {
                     SurfaceMaterialInputBox.ForeColor = Color.Black;
                     SurfaceMaterialInputBox.BackColor = Color.Red;
                     SurfaceMaterialInputBox.Focus();
-                    MessageBox.Show($"Min Width: {Desk.MINDRAWERS}\"\nMax Width: {Desk.MAXDRAWERS}\"");
+                    MessageBox.Show("Please enter one of the following:\n Laminate\n Oak\n Rosewood\n Veneer\n Pine\n");
                 }
 
 
@@ -249,9 +252,54 @@ namespace MegaDesk_Mosher
             }
             catch (FormatException)
             {
-                MessageBox.Show("Please enter a number for the Number of Drawers");
+                MessageBox.Show("Please enter one of the following: Laminate\n Oak\n Rosewood\n Veneer\n Pine\n");
                 SurfaceMaterialInputBox.ForeColor = Color.Red;
                 SurfaceMaterialInputBox.Focus();
+            }
+        }
+
+        // Checks if the user input for Surface Material is valid.  If not, returns false
+        private Boolean isValidSurfaceMaterial(string userInput)
+        {
+            Boolean valid = false;
+
+            if (Enum.IsDefined(typeof(Desk.SurfaceMaterials), userInput))
+            {
+                valid = true;
+            }
+            
+
+            return valid;
+        }
+        private void validateRushoptionInput(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                int rushOption = int.Parse(RushOrderInputBox.Text);
+
+
+                // While the validation fails, change the text color
+                if (rushOption == 3 || rushOption == 5 || rushOption == 7 || rushOption == 14)
+                {
+
+                } else
+                {
+                    RushOrderInputBox.ForeColor = Color.Black;
+                    RushOrderInputBox.BackColor = Color.Red;
+                    RushOrderInputBox.Focus();
+                    MessageBox.Show($"Valid days are 3, 5, 7, or 14.  You entered {rushOption}");
+                }
+
+
+                RushOrderInputBox.ForeColor = Color.Black;
+                RushOrderInputBox.BackColor = Color.White;
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Please enter a number for the Number of Drawers");
+                RushOrderInputBox.ForeColor = Color.Red;
+                RushOrderInputBox.Focus();
             }
         }
 
