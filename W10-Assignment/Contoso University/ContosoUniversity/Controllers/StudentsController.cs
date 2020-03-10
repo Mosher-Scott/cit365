@@ -131,7 +131,8 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // Adding try/catch block to handle any errors
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -139,24 +140,49 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await _context.Students
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();
             }
 
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed.  Try again, and if the the problem persists, see your systems adminitrator.";
+            }
+
             return View(student);
         }
 
         // POST: Students/Delete/5
+        // This does the actual delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // First get the entity
             var student = await _context.Students.FindAsync(id);
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (student == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            try
+            {
+                // Call the removal method to set the status of the entity to Deleted
+                _context.Students.Remove(student);
+
+                // Now a SQL Delete statement is generated and the entity is removed
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            } catch (DbUpdateException /* ex */)
+            {
+                // Log the error
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesErrpr = true });
+            }
+
         }
 
         private bool StudentExists(int id)
