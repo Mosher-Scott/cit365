@@ -21,14 +21,24 @@ namespace ContosoUniversity.Controllers
 
         // GET: Students
         // Adding in ability to have the user sort the data via column name headings.  It will get the sortOrder value from the query string
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            // These will be used by the view to configure the column heading links
+            // These will be used by the view to configure the column heading links.  Will also need to modify Students/index.cshtml
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
 
+            // Used for the search box.  Make sure it is added to the correct form
+            ViewData["CurrentFilter"] = searchString;
+
             var students = from s in _context.Students
                            select s;
+
+            //  Now check if the search string is empty.  If not, search for the string in both name columns
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+               || s.FirstMidName.Contains(searchString));
+            }
 
             switch (sortOrder)
             {

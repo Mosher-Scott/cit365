@@ -9,6 +9,18 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<!-- Form for the search feature.  Because we are using a get, the search string displays in the URL, and therefore the user can bookmark the search -->
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn-primary"/> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
