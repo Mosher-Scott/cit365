@@ -21,8 +21,11 @@ namespace ContosoUniversity.Controllers
 
         // GET: Students
         // Adding in ability to have the user sort the data via column name headings.  It will get the sortOrder value from the query string
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            // Contains the current sort order, so when you change to a new page it keeps that value
+            ViewData["CurrentSort"] = sortOrder;
+
             // These will be used by the view to configure the column heading links.  Will also need to modify Students/index.cshtml
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
@@ -30,6 +33,16 @@ namespace ContosoUniversity.Controllers
             // Used for the search box.  Make sure it is added to the correct form
             ViewData["CurrentFilter"] = searchString;
 
+            // If the search string changes, reset the page back to 1 since the number of results probably changed.  This works because if you click "Submit", searchString is no long null
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            } else
+            {
+                searchString = currentFilter;
+            }
+
+            // Create your query
             var students = from s in _context.Students
                            select s;
 
@@ -56,8 +69,16 @@ namespace ContosoUniversity.Controllers
                     break;
             }
 
+            // Change this to change how many results display per page
+            int pageSize = 3;
+
             // Since we don't care about keeping it 100% up to date, use AsNoTracking for speed improvement
-            return View(await students.AsNoTracking().ToListAsync());
+            // Original, without pagination on the results 
+            // return View(await students.AsNoTracking().ToListAsync());
+
+            // Take the student query into a single page of students in a collection. Then the page is pages to the view
+            // pageNumber ?? 1, means it will return either the value of pageNumber, or 1 if pageNumber is null
+            return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Students/Details/5
